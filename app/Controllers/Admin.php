@@ -37,10 +37,9 @@ class Admin extends BaseController
 
     public function change_roll($id)
     {
-        $builder = $this->db->table('auth_groups');
-        $builder->set('name', 'admin');
-        $builder->where('id', $id);
-        $builder->update();
-        return view('admin/detail');
+        $this->UserModel
+            ->whereIn('id', $id)
+            ->set(['name' => 'admin'])
+            ->update();
     }
 }
